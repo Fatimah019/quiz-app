@@ -1,98 +1,135 @@
-const quesandanswers=[
+let quesandanswers=[
     {
-        "questionNumber":"1",
-        "question":"Hyper Text Markup Language Stand For?",
-        "correct answer":"b",
-        "options":{
-            "a":"answer 1",
-            "b":"answer 2",
-            "c":"answer 3",
-            "d":"answer 4"
-        }
+        question:"Hyper Text Markup Language Stand For?",
+        choice1:"Douglas Crockford",
+        choice2:"Sheryl Sandberg",
+        choice3:"Brendan Eich",
+        choice4:"Brendan Eich",
+        correctanswer: 1
     },
     {
-        "questionNumber":"2",
-        "question":"Which language is used for styling web pages?",
-        "correct answer":"b",
-        "options":{
-            "a":"answer 1",
-            "b":"answer 2",
-            "c":"answer 3",
-            "d":"answer 4"
-        }
+        question:"Which language is used for styling web pages?",
+        choice1:"Douglas Crockford",
+        choice2:"Sheryl g",
+        choice3:"Brendan Eich",
+        choice4:"Brendan Eich",
+        correctanswer:3
     },
     {
-        "questionNumber":"3",
-        "question":"Which is not a JavaScript Framework?",
-        "correct answer":"b",
-        "options":{
-            "a":"answer 1",
-            "b":"answer 2",
-            "c":"answer 3",
-            "d":"answer 4"
-        }
+        question:"Which is not a JavaScript Framework?",
+        choice1:"Douglas Crockford",
+        choice2:"Sheryl Sandberg",
+        choice3:"Brendan Eich",
+        choice4:"Brendan ",        
+        correctanswer:4
     },
     {
-        "questionNumber":"4",
-        "question":"Which is used for Connect To Database?",
-        "correct answer":"b",
-        "options":{
-            "a":"answer 1",
-            "b":"answer 2",
-            "c":"answer 3",
-            "d":"answer 4"
-        }
+        question:"Which is used for Connect To Database?",
+        choice1:"Douglas",
+        choice2:"Sheryl Sandberg",
+        choice3:"Brendan Eich",
+        choice4:"Brendan Eich",
+        correctanswer:2
     },
     {
-        "questionNumber":"5",
-        "question":"question five",
-        "correct answer":"b",
-        "options":{
-            "a":"answer 1",
-            "b":"answer 2",
-            "c":"answer 3",
-            "d":"answer 4"
-        }
+        question:"question five",
+        choice1:"Douglas Crockford",
+        choice2:"Sheryl ",
+        choice3:"Brendan Eich",
+        choice4:"Brendan Eich",     
+        correctanswer:2
     }
 ];
 
+const question=document.getElementById("question");
+const choices=Array.from(document.getElementsByClassName("choice-text"));
+const nextBtn=document.getElementsByClassName("next");
 
-//display questions in the question container
+console.log(choices);
 
-const displayQuestions=()=>{
-    quesandanswers.forEach(ques=>{
-        let questionsContainer=document.getElementById('question-container');
+let currentQuestion={};
+let acceptingAnswers=false;
+let score=0;
+let questionCounter=0;
+let availableQuestions=[];
 
-        let questionNumber=document.createElement("h3");
-        questionNumber.textContent=ques.questionNumber;
-        questionNumber.setAttribute('id', 'qus-no');
 
-        let questionsDisplay=document.createElement('h3');
-        questionsDisplay.textContent=ques.question;
-        questionsDisplay.setAttribute('id', 'questions-display');
-        
-        //append questions and number label to the question container
-        questionsContainer.appendChild(questionNumber);
-        questionsContainer.appendChild(questionsDisplay);
-        
+
+//consts
+const reward=5;
+const maxQuestion=5;
+
+startGame=()=>{
+    questionCounter=0;
+    score=0;
+    availableQuestions=[...quesandanswers];
+    //console.log(availableQuestions);
+
+    getNewQuestion()
+}
+
+getNewQuestion=()=>{
+    if(availableQuestions.length===0 || questionCounter===maxQuestion){
+        //go to the end game page
+        return window.location.assign("quiz.html");
+    }
+    questionCounter++;
+    const questionIndex=Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion=availableQuestions[questionIndex];
+    question.innerText=currentQuestion.question;
+
+    choices.forEach(choice=>{
+        const number=choice.dataset['indexNumber'];
+        choice.innerText=currentQuestion['choice' + number];
+        //console.log(choice);
+    });
+        //display only the number of questions in the array
+    availableQuestions.splice(questionIndex, 1);
+    console.log(availableQuestions);
+    acceptingAnswers=true;
+}
+
+choices.forEach(choice=>{
+    choice.addEventListener("click", e=>{
+        if(!acceptingAnswers) return;
+
+        acceptingAnswers=false;
+        const selectedChoice=e.target;
+        const selectedAnswer=selectedChoice.dataset['indexNumber'];
+        console.log(selectedAnswer);
+
+        //console.log(selectedAnswer == currentQuestion.correctAnswer);
+
+        const resultToDisplay=
+        selectedAnswer== currentQuestion.correctanswer? "correct" : "incorrect";
+        selectedChoice.parentElement.classList.add(resultToDisplay);
+        selectedAnswer.style.backgroundColor="blue";
+        setTimeout(()=>{
+            selectedChoice.parentElement.classList.remove(resultToDisplay);
+            getNewQuestion();
+        }, 1500);
         
     });
+});
 
+startGame();
+
+/*
+getPrevQuestion=()=>{
+    questionCounter--;
+    const questionIndex=Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion=availableQuestions[questionIndex];
+    question.innerText=currentQuestion.question;
+
+    choices.forEach(choice=>{
+        const number=choice.dataset['indexNumber'];
+        choice.innerText=currentQuestion['choice' + number];
+        //console.log(choice);
+    });
+
+    //display only the number of questions in the array
+    availableQuestions.splice(questionIndex, 1);
+    console.log(availableQuestions);
+    acceptingAnswers=true;
 }
-displayQuestions();
-
-var currQues=0;
-function nextQues(){
-    currQues++;
-    let questionsContainer=document.getElementById('question-container');
-
-    let questionNum=document.createElement("h3");
-    questionNum.setAttribute('id', 'qus-no');
-
-    if(currQues>=quesandanswers.length){
-        currQues=1;
-        questionNum.innerHTML=currQues.questionNumber;
-        questionsContainer.appendChild(questionNum);
-    }
-}
-nextQues();
+*/

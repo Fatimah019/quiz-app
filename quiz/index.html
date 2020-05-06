@@ -6,40 +6,11 @@
     </head>
     <body>
         <div class="quiz-container">
-            <!--header-->
-            <div class="header">
-                <div><p>Time counter</p></div>
-                <div><h3>QUIZ APP</h3></div>
-                <div><h3><button>Pause</button></h3></div>
-            </div>
-            <h3 id="qus-no"></h3>
-            <!--question div-->
-            <div class="question-container" id="question-container"></div>
-
-            <!--options container-->
-            <div class="option-container">
-                <!--list of options-->
-                <div>Answer one</div>
-                <div>Answer one</div>
-                <div>Answer one</div>
-                <div>Answer one</div>
-            </div>
-
-            <!--score and next button container-->
-            <div class="score-next">
-                <div>
-                   <span>Score : </span> <span>2</span><span>/</span><span>5</span>
-                </div>
-                <div>
-                    <button onclick="nextQues()"><i class="fa fa-angle-right">Next</i></button>
-                    <button onclick="prevQues()"><i class="fa fa-angle-left">Prev</i></button>
-                </div>
-            </div>
-            <!--submit butoon div-->
-            <div class="submit-btn">
-                <form action="show-score.html">
-                    <input type="submit" value="Submit">
-                </form>
+            <h3 id="app-name">QUIZ APP</h3>
+            <div id="qusandoptions">
+                <div id="qus-no"></div>
+                <div id="questions"></div>
+                <div id="options"></div>
             </div>
         </div>
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quiz App</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="game.css">
+    </head>
+    <body>
+        <div class="container">
+            <div id="game" class="justify-center flex-column">
+                <h2 id="question">what is an html</h2>
+                <div class="choice-container">
+                    <p class="choice-label">A</p>
+                    <p class="choice-text" data-index-number="1">choice one</p>
+                </div>
+
+                <div class="choice-container">
+                    <p class="choice-label">B</p>
+                    <p class="choice-text"  data-index-number="2">choice two</p>
+                </div>
+
+                <div class="choice-container">
+                    <p class="choice-label">C</p>
+                    <p class="choice-text"  data-index-number="3">choice three</p>
+                </div>
+
+                <div class="choice-container">
+                    <p class="choice-label">D</p>
+                    <p class="choice-text"  data-index-number="4">choice four</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="next-prev">
+            <button class="next" onclick="getNewQuestion()">Next</button>
+            <button class="prev" onclick="getPrevQuestion()">Prev</button>
+        </div>
+    <script src="script.js"></script>
+    </body>
+</html>
