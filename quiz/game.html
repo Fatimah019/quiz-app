@@ -2,12 +2,17 @@
 <html>
     <head>
         <title>Quiz App</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="game.css">
+        <link rel="stylesheet" href="./assets/style.css">
+        <link rel="stylesheet" href="./assets/game.css">
     </head>
     <body>
         <div class="container">
             <div id="game" class="justify-center flex-column">
+                <div class="flex-row">
+                    <h3 id="score">SCORE : 0</h3>
+                    <h3 id="progress">1/5</h3>
+                    <h3 class="next" onclick="getNewQuestion()">Next</button>
+                </div>
                 <h2 id="question">what is an html</h2>
                 <div class="choice-container">
                     <p class="choice-label">A</p>
@@ -29,12 +34,7 @@
                     <p class="choice-text"  data-index-number="4">choice four</p>
                 </div>
             </div>
-
         </div>
-        <div class="next-prev">
-            <button class="next" onclick="getNewQuestion()">Next</button>
-            <button class="prev" onclick="getPrevQuestion()">Prev</button>
-        </div>
-    <script src="script.js"></script>
+    <script src="./assets/script.js"></script>
     </body>
 </html>

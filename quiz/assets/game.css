@@ -1,0 +1,40 @@
+.choice-container{
+    display: flex;
+    margin-bottom:0.5rem;
+    width:100%;
+    border:0.1rem;
+    background-color: rgb(118, 134, 118);;
+    font-size:30px;
+}
+.choice-container:hover{
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(122, 111, 111);
+    transform:translateY(-0.1rem);
+    transition:transform 150ms;
+    cursor: pointer;
+}
+.choice-label{
+    background-color: rgb(18, 46, 18);
+    padding:1.5rem 2.5rem;
+    cursor: pointer;
+}
+.choice-text{
+    padding: 1.5rem;
+    width:100%;
+    color:rgb(26, 32, 26);
+}
+.correct{
+    background-color: rgb(73, 119, 73);
+}
+.incorrect{
+    background-color: rgb(223, 18, 18);
+}
+.changeTextColor{
+    color: #ffffff;
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    margin-bottom:2rem;
+    justify-content: space-around;
+
+}
