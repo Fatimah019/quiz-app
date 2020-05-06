@@ -103,7 +103,7 @@ choices.forEach(choice=>{
         const resultToDisplay=
         selectedAnswer== currentQuestion.correctanswer? "correct" : "incorrect";
         selectedChoice.parentElement.classList.add(resultToDisplay);
-        selectedAnswer.style.backgroundColor="blue";
+        
         setTimeout(()=>{
             selectedChoice.parentElement.classList.remove(resultToDisplay);
             getNewQuestion();
