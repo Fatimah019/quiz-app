@@ -41,13 +41,14 @@ let quesandanswers=[
     }
 ];
 
+const gameContainer=document.getElementById("game-container");
 const question=document.getElementById("question");
 const choices=Array.from(document.getElementsByClassName("choice-text"));
 const nextBtn=document.getElementsByClassName("next");
 const scoreDisplay=document.getElementById("score");
 const progress=document.getElementById("progress");
-
-console.log(choices);
+const scorePage=document.getElementById("score-page");
+const totalScoreText=document.getElementById("score-total-text");
 
 let currentQuestion={};
 let acceptingAnswers=false;
@@ -64,15 +65,15 @@ startGame=()=>{
     questionCounter=0;
     score=0;
     availableQuestions=[...quesandanswers];
-    //console.log(availableQuestions);
 
     getNewQuestion()
 }
 
 getNewQuestion=()=>{
     if(availableQuestions.length===0 || questionCounter===maxQuestion){
-        //go to the end game page
-        return window.location.assign("score.html");
+        //go to the end game page and display
+        scorePage.style.display="block";
+        gameContainer.style.display="none";
     }
     questionCounter++;
     const questionIndex=Math.floor(Math.random() * availableQuestions.length);
@@ -102,13 +103,19 @@ choices.forEach(choice=>{
         console.log(selectedAnswer);
 
         //console.log(selectedAnswer == currentQuestion.correctAnswer);
-
+        getTotalScore=(total, num)=>{
+            return total + num ;
+        }
+        item=()=>{
+            incrementScore(reward).reduce(getTotalScore, 0);
+        }
         let resultToDisplay="correct";
         let changeTextColor="changeTextColor"
         if(selectedAnswer == currentQuestion.correctanswer){
             resultToDisplay="correct";
             changeTextColor="changeTextColor";
             incrementScore(reward);
+            totalScoreText.innerText=getTotalScore();
         }
         else{
             resultToDisplay="incorrect" ;
@@ -128,5 +135,6 @@ incrementScore=(num)=>{
     score+=num;
     scoreDisplay.innerText="SCORE : " + score;   
 }
+
 startGame();
 
