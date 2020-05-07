@@ -58,7 +58,7 @@ let availableQuestions=[];
 
 
 //consts
-const reward=5;
+const reward=1;
 const maxQuestion=5;
 
 startGame=()=>{
@@ -115,7 +115,7 @@ choices.forEach(choice=>{
             resultToDisplay="correct";
             changeTextColor="changeTextColor";
             incrementScore(reward);
-            totalScoreText.innerText=getTotalScore();
+           
         }
         else{
             resultToDisplay="incorrect" ;
@@ -134,7 +134,7 @@ choices.forEach(choice=>{
 incrementScore=(num)=>{
     score+=num;
     scoreDisplay.innerText="SCORE : " + score;   
+    totalScoreText.innerText="YOU SCORED : " + score;
 }
-
 startGame();
 
